@@ -1,4 +1,4 @@
-package com.seatly.seatly.domain;
+package com.seatly.domain;
 
 import jakarta.persistence.*;
 

@@ -1,4 +1,4 @@
-package com.seatly.seatly;
+package com.seatly;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
