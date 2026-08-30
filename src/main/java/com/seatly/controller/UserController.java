@@ -4,6 +4,7 @@ import com.seatly.dto.user.UserCreateRequest;
 import com.seatly.dto.user.UserResponse;
 import com.seatly.dto.user.UserUpdateRequest;
 import com.seatly.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,7 +22,7 @@ public class UserController {
 
     @PostMapping
     public UserResponse createUser(
-            @RequestBody UserCreateRequest request
+            @Valid @RequestBody UserCreateRequest request
     ) {
         return userService.createUser(request);
     }

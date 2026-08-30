@@ -4,6 +4,7 @@ import com.seatly.domain.User;
 import com.seatly.dto.user.UserCreateRequest;
 import com.seatly.dto.user.UserResponse;
 import com.seatly.dto.user.UserUpdateRequest;
+import com.seatly.exception.UserNotFoundException;
 import com.seatly.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,7 +34,7 @@ public class UserService {
 
     public UserResponse getUser(Long id) {
         User user = userRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("사용자를 찾을 수 없습니다."));
+                .orElseThrow(() -> new UserNotFoundException("사용자를 찾을 수 없습니다."));
 
         return new UserResponse(user);
     }
@@ -48,7 +49,7 @@ public class UserService {
     @Transactional
     public UserResponse updateUser(Long id, UserUpdateRequest request) {
         User user = userRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("사용자를 찾을 수 없습니다."));
+                .orElseThrow(() -> new UserNotFoundException("사용자를 찾을 수 없습니다."));
 
         user.updateNickname(request.getNickname());
 
@@ -58,7 +59,7 @@ public class UserService {
     @Transactional
     public void deleteUser(Long id) {
         User user = userRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("사용자를 찾을 수 없습니다."));
+                .orElseThrow(() -> new UserNotFoundException("사용자를 찾을 수 없습니다."));
 
         userRepository.delete(user);
     }
