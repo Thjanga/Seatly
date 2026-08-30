@@ -5,6 +5,8 @@ import com.seatly.dto.user.UserResponse;
 import com.seatly.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
@@ -27,5 +29,8 @@ public class UserController {
         return userService.getUser(id);
     }
 
-
+    @GetMapping
+    public List<UserResponse> getUsers() {
+        return userService.getUsers();
+    }
 }

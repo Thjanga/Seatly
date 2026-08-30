@@ -6,6 +6,8 @@ import com.seatly.dto.user.UserResponse;
 import com.seatly.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserService {
 
@@ -32,5 +34,12 @@ public class UserService {
                 .orElseThrow(() -> new IllegalArgumentException("사용자를 찾을 수 없습니다."));
 
         return new UserResponse(user);
+    }
+
+    public List<UserResponse> getUsers(){
+        return userRepository.findAll()
+                .stream()
+                .map(UserResponse::new)
+                .toList();
     }
 }
