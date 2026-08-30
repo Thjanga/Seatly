@@ -2,6 +2,7 @@ package com.seatly.controller;
 
 import com.seatly.dto.user.UserCreateRequest;
 import com.seatly.dto.user.UserResponse;
+import com.seatly.dto.user.UserUpdateRequest;
 import com.seatly.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,5 +33,10 @@ public class UserController {
     @GetMapping
     public List<UserResponse> getUsers() {
         return userService.getUsers();
+    }
+
+    @PatchMapping("/{id}")
+    public UserResponse updateUser(@PathVariable Long id, @RequestBody UserUpdateRequest request){
+        return userService.updateUser(id,request);
     }
 }

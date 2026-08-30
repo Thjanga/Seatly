@@ -33,4 +33,9 @@ public class User {
     public String getNickname() {
         return nickname;
     }
+
+    public void updateNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
 }
