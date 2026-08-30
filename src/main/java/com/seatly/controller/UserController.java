@@ -4,6 +4,7 @@ import com.seatly.dto.user.UserCreateRequest;
 import com.seatly.dto.user.UserResponse;
 import com.seatly.dto.user.UserUpdateRequest;
 import com.seatly.service.UserService;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -38,5 +39,11 @@ public class UserController {
     @PatchMapping("/{id}")
     public UserResponse updateUser(@PathVariable Long id, @RequestBody UserUpdateRequest request){
         return userService.updateUser(id,request);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteUser(@PathVariable Long id) {
+        userService.deleteUser(id);
     }
 }

@@ -54,4 +54,12 @@ public class UserService {
 
         return new UserResponse(user);
     }
+
+    @Transactional
+    public void deleteUser(Long id) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("사용자를 찾을 수 없습니다."));
+
+        userRepository.delete(user);
+    }
 }

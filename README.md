@@ -22,7 +22,7 @@ Spring Boot 기반 실시간 예약 및 대기 시스템
 
 - [x] Spring Boot 프로젝트 생성
 - [x] Health Check API 구현
-- [ ] PostgreSQL 연동
+- [x] PostgreSQL 연동
 - [ ] 회원 기능
 - [ ] 시설 기능
 - [ ] 예약 기능
