@@ -6,6 +6,7 @@ import com.seatly.dto.facility.FacilityUpdateRequest;
 import com.seatly.dto.user.UserResponse;
 import com.seatly.dto.user.UserUpdateRequest;
 import com.seatly.service.FacilityService;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -40,5 +41,11 @@ public class FacilityController {
     @PatchMapping("/{id}")
     public FacilityResponse updateFacility(@PathVariable Long id, @RequestBody FacilityUpdateRequest request){
         return facilityService.updateFacility(id,request);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteFacility(@PathVariable Long id) {
+        facilityService.deleteFacility(id);
     }
 }

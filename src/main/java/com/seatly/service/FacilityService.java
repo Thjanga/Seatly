@@ -63,4 +63,12 @@ public class FacilityService {
 
         return new FacilityResponse(facility);
     }
+
+    @Transactional
+    public void deleteFacility(Long id){
+        Facility facility = facilityRepository.findById(id)
+                .orElseThrow(()->new FacilityNotFoundException("시설을 찾을 수 없습니다."));
+
+        facilityRepository.delete(facility);
+    }
 }
