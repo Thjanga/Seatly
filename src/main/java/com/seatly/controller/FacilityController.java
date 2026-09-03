@@ -21,4 +21,9 @@ public class FacilityController {
     ) {
         return facilityService.createFacility(request);
     }
+
+    @GetMapping("/{id}")
+    public FacilityResponse getFacility(@PathVariable Long id){
+        return facilityService.getFacility(id);
+    }
 }

@@ -11,7 +11,7 @@ import java.util.Map;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    // 1. 유저를 찾지 못했을 때 터지는 예외 처리 (404 Not Found)
+    // 1. 유저를 찾지 못했을 때 예외 처리
     @ExceptionHandler(UserNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public Map<String, String> handleUserNotFound(UserNotFoundException e) {
@@ -29,4 +29,14 @@ public class GlobalExceptionHandler {
 
         return Map.of("message", message);
     }
+
+    // 3. 시설을 찾지 못했을 때 예외 처리
+    @ExceptionHandler(FacilityNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public Map<String, String> handleFacilityNotFound(
+            FacilityNotFoundException e
+    ) {
+        return Map.of("message", e.getMessage());
+    }
+
 }
