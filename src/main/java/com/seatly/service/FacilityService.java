@@ -3,11 +3,13 @@ package com.seatly.service;
 import com.seatly.domain.Facility;
 import com.seatly.dto.facility.FacilityCreateRequest;
 import com.seatly.dto.facility.FacilityResponse;
+import com.seatly.dto.user.UserResponse;
 import com.seatly.exception.FacilityNotFoundException;
 import com.seatly.exception.UserNotFoundException;
 import com.seatly.repository.FacilityRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -39,5 +41,12 @@ public class FacilityService {
 
         // 3. Facility → FacilityResponse 변환
         return new FacilityResponse(facility);
+    }
+
+    public List<FacilityResponse> getFacilities() {
+        return facilityRepository.findAll()
+                .stream()
+                .map(FacilityResponse::new)
+                .toList();
     }
 }

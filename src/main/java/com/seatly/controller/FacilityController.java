@@ -2,8 +2,11 @@ package com.seatly.controller;
 
 import com.seatly.dto.facility.FacilityCreateRequest;
 import com.seatly.dto.facility.FacilityResponse;
+import com.seatly.dto.user.UserResponse;
 import com.seatly.service.FacilityService;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/facilities")
@@ -25,5 +28,10 @@ public class FacilityController {
     @GetMapping("/{id}")
     public FacilityResponse getFacility(@PathVariable Long id){
         return facilityService.getFacility(id);
+    }
+
+    @GetMapping
+    public List<FacilityResponse> getFacilities() {
+        return facilityService.getFacilities();
     }
 }
