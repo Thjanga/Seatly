@@ -41,4 +41,10 @@ public class Facility {
         return capacity;
     }
 
+    public void updateFacility(String name, String description, Integer capacity) {
+        this.name = name;
+        this.description = description;
+        this.capacity = capacity;
+    }
+
 }

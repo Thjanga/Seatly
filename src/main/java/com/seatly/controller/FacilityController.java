@@ -2,7 +2,9 @@ package com.seatly.controller;
 
 import com.seatly.dto.facility.FacilityCreateRequest;
 import com.seatly.dto.facility.FacilityResponse;
+import com.seatly.dto.facility.FacilityUpdateRequest;
 import com.seatly.dto.user.UserResponse;
+import com.seatly.dto.user.UserUpdateRequest;
 import com.seatly.service.FacilityService;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,5 +35,10 @@ public class FacilityController {
     @GetMapping
     public List<FacilityResponse> getFacilities() {
         return facilityService.getFacilities();
+    }
+
+    @PatchMapping("/{id}")
+    public FacilityResponse updateFacility(@PathVariable Long id, @RequestBody FacilityUpdateRequest request){
+        return facilityService.updateFacility(id,request);
     }
 }

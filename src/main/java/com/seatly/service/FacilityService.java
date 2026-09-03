@@ -1,13 +1,17 @@
 package com.seatly.service;
 
 import com.seatly.domain.Facility;
+import com.seatly.domain.User;
 import com.seatly.dto.facility.FacilityCreateRequest;
 import com.seatly.dto.facility.FacilityResponse;
+import com.seatly.dto.facility.FacilityUpdateRequest;
 import com.seatly.dto.user.UserResponse;
+import com.seatly.dto.user.UserUpdateRequest;
 import com.seatly.exception.FacilityNotFoundException;
 import com.seatly.exception.UserNotFoundException;
 import com.seatly.repository.FacilityRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -48,5 +52,15 @@ public class FacilityService {
                 .stream()
                 .map(FacilityResponse::new)
                 .toList();
+    }
+
+    @Transactional
+    public FacilityResponse updateFacility(Long id, FacilityUpdateRequest request) {
+        Facility facility = facilityRepository.findById(id)
+                .orElseThrow(() -> new FacilityNotFoundException("시설을 찾을 수 없습니다."));
+
+        facility.updateFacility(request.getName(),request.getDescription(),request.getCapacity());
+
+        return new FacilityResponse(facility);
     }
 }
